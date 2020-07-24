@@ -44,10 +44,10 @@ public class ShapeCollectorTestSuite {
         //When
         shapeCollector.addFigure(square);
         shapeCollector.addFigure(triangle);
-        boolean result = shapeCollector.removeFigure(square);
+        shapeCollector.removeFigure(square);
         //Then
-        Assert.assertTrue(result);
-        Assert.assertEquals(1,shapeCollector.getFigure(1));
+        Assert.assertEquals(triangle,shapeCollector.getFigure(0));
+
     }
     @Test
     public void testGetFigure(){
