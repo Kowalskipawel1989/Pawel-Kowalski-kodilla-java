@@ -6,7 +6,6 @@ public class Circle implements Shape{
     public Circle(int a){
         this.a = a;
     }
-
     @Override
     public String getShapeName(){
         return "Circle";
