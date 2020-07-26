@@ -5,7 +5,6 @@ public class Square implements Shape{
 
     public Square(int a) {
         this.a = a;
-
     }
     @Override
     public String getShapeName() {

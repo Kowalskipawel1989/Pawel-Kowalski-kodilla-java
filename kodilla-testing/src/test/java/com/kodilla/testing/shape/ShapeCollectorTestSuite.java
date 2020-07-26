@@ -47,7 +47,6 @@ public class ShapeCollectorTestSuite {
         shapeCollector.removeFigure(square);
         //Then
         Assert.assertEquals(triangle,shapeCollector.getFigure(0));
-
     }
     @Test
     public void testGetFigure(){
