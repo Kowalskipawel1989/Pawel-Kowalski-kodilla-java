@@ -1,13 +1,13 @@
 package com.kodilla.testing.library;
 
-import junit.framework.Assert;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-import static org.mockito.ArgumentMatchers.anyString;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -90,8 +90,9 @@ public class BookDirectoryTestSuite {
     @Test
     public void testListBooksInHandsOfNoBooksOnLoan(){
         //Given
-        LibraryUser libraryUser new LibraryUser("John","Makowski","111122331");
-        Book book new Book ("Miasto", "Jan Marcel",2000);
+        LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
+        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
+
 
         //When
 
@@ -101,8 +102,9 @@ public class BookDirectoryTestSuite {
     @Test
     public void testListBooksInHandsOfHasOneOnLoan(){
         //Given
-        LibraryUser libraryUser new LibraryUser("John","Makowski","111122331");
-        Book book new Book ("Miasto", "Jan Marcel",2000);
+        LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
+        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
+        Book book0 = new Book("Kaczor", "Wawrzyn Artur",2000);
 
         //When
 
@@ -112,8 +114,14 @@ public class BookDirectoryTestSuite {
     @Test
     public void testListBooksInHandsOfHasFiveOnLoan(){
         //Given
-        LibraryUser libraryUser new LibraryUser("John","Makowski","111122331");
-        Book book0 new Book ("Miasto", "Jan Marcel",2000);
+        LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
+        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
+        Book book0 = new Book("Kaczor", "Wawrzyn Artur",2000);
+        Book book1 = new Book("Kaczor", "Wawrzyn Artur",2000);
+        Book book2 = new Book("Kaczor", "Wawrzyn Artur",2000);
+        Book book3 = new Book("Kaczor", "Wawrzyn Artur",2000);
+        Book book4 = new Book("Kaczor", "Wawrzyn Artur",2000);
+
 
         //When
 
