@@ -1,7 +1,5 @@
 package com.kodilla.testing.forum;
 
-import com.sun.xml.internal.ws.model.wsdl.WSDLOutputImpl;
-
 public class ForumComment {
     ForumPost forumPost;
     String commentBody;
