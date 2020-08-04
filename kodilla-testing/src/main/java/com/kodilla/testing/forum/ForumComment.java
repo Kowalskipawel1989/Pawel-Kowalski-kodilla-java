@@ -1,5 +1,7 @@
 package com.kodilla.testing.forum;
 
+import com.sun.xml.internal.ws.model.wsdl.WSDLOutputImpl;
+
 public class ForumComment {
     ForumPost forumPost;
     String commentBody;
@@ -42,5 +44,6 @@ public class ForumComment {
         result = 31 * result + author.hashCode();
         return result;
     }
+
 
 }
