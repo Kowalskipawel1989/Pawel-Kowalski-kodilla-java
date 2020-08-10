@@ -1,5 +1,5 @@
 package com.kodilla.testing.shape;
-import com.kodilla.testing.shape.Shape;
+
 import org.junit.*;
 
 public class ShapeCollectorTestSuite {
@@ -61,4 +61,5 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(square,shapeCollector.getFigure(0));
         Assert.assertEquals(circle,shapeCollector.getFigure(1));
     }
+
 }

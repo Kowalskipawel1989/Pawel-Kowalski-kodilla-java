@@ -142,4 +142,5 @@ public class ForumTestSuite {
         Assert.assertEquals(0, forumUser.getCommentsQuantity());
     }
 
+
 }
