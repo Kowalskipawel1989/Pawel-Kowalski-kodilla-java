@@ -1,9 +1,7 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.forumuser.Forum;
 import com.kodilla.stream.forumuser.ForumUser;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,7 @@ public class StreamMain {
     Forum forum = new Forum();
 
     Map<Integer,ForumUser> result = forum.getUserList().stream()
-        .filter(dateOfBirth -> dateOfBirth.hashCode() < 2000)
+        .filter(dateOfBirth -> dateOfBirth.getDateOfBirth().now().getYear() > dateOfBirth.getDateOfBirth().getYear() + 20)
         .filter(dateOfBirth -> dateOfBirth.getSex() == 'M')
         .filter(dateOfBirth -> dateOfBirth.getNumberOfPostsPublished() >= 1)
         .collect(Collectors.toMap(ForumUser::getIdNumber,idNumber -> idNumber));
@@ -28,5 +26,4 @@ public class StreamMain {
         .map(key -> key.getKey() + ":" + key.getValue())
         .forEach(System.out::println);
     }
-
 }
