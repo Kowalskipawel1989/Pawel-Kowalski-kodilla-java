@@ -2,6 +2,7 @@ package com.kodilla.testing.library;
 
 
 import org.junit.Test;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,42 +92,55 @@ public class BookDirectoryTestSuite {
     public void testListBooksInHandsOfNoBooksOnLoan(){
         //Given
         LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
-        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
-
-
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabase);
+        List<Book> resultListBook = new ArrayList<>();
+        LibraryUser user = new LibraryUser("Mario", "Jeans", "131452215151");
+        when(libraryDatabase.listBooksInHandsOf(user)).thenReturn(resultListBook);
         //When
-
-
+        List<Book> theListOfBook = bookLibrary.listBooksInHandOf(user);
         //Then
+        Assert.assertEquals(0,theListOfBook);
     }
     @Test
     public void testListBooksInHandsOfHasOneOnLoan(){
         //Given
         LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
-        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
-        Book book0 = new Book("Kaczor", "Wawrzyn Artur",2000);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabase);
+        List<Book> resultListBook = new ArrayList<>();
 
+        LibraryUser user = new LibraryUser("Pablo", "Novak", "13124515151");
+        Book book0 = new Book("Donald", "  Graham Artur",2000);
+        resultListBook.add(book0);
+        when(libraryDatabase.listBooksInHandsOf(user)).thenReturn(resultListBook);
         //When
-
-
+        List<Book> theListOfBook = bookLibrary.listBooksInHandOf(user);
         //Then
+        Assert.assertEquals(1,theListOfBook);
+
     }
     @Test
     public void testListBooksInHandsOfHasFiveOnLoan(){
         //Given
         LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
-        LibraryUser user = new LibraryUser("Pablo", "Novako", "1314515151");
-        Book book0 = new Book("Kaczor", "Wawrzyn Artur",2000);
-        Book book1 = new Book("Kaczor", "Wawrzyn Artur",2000);
-        Book book2 = new Book("Kaczor", "Wawrzyn Artur",2000);
-        Book book3 = new Book("Kaczor", "Wawrzyn Artur",2000);
-        Book book4 = new Book("Kaczor", "Wawrzyn Artur",2000);
-
-
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabase);
+        List<Book> resultListBook = new ArrayList<>();
+        LibraryUser user = new LibraryUser("Roger", "Markov", "213143515151");
+        Book book0 = new Book("Teddy", "Kowalski Pablo",2000);
+        Book book1 = new Book("Gold", "Nowak Martin",2011);
+        Book book2 = new Book("War in", "Smith Artur",2012);
+        Book book3 = new Book("Secret", "Jones Roger",2016);
+        Book book4 = new Book("100 lat", "William Steve",2005);
+        resultListBook.add(book0);
+        resultListBook.add(book1);
+        resultListBook.add(book2);
+        resultListBook.add(book3);
+        resultListBook.add(book4);
+        when(libraryDatabase.listBooksInHandsOf(user)).thenReturn(resultListBook);
         //When
-
+        List<Book> theListOfBook = bookLibrary.listBooksInHandOf(user);
 
         //Then
+        Assert.assertEquals(5,theListOfBook);
 
     }
 }

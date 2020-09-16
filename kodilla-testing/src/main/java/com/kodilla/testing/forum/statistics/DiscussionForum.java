@@ -1,5 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
+
 public class DiscussionForum{
     int numberOfUsers;
     int numberOfPosts;
@@ -32,9 +33,10 @@ public class DiscussionForum{
         return averageNumberOfCommentsPerPost;
     }
 
-    public void calculateAdvStatistics(Statistics statistics) {
-
-   }
+    public void calculateAdvStatistics(Statistics statistics){
+        statistics.usersNames();
+    }
    public void showStatistics() {
+
    }
 }

@@ -18,7 +18,10 @@ public class BookLibrary {
         bookList = resultList;
         return bookList;
     }
-    public void listBooksInHandOf(LibraryUser libraryUser){
+    public List<Book> listBooksInHandOf(LibraryUser libraryUser){
+        List<Book> rentBookList = new ArrayList<Book>();
+        if (libraryUser.)
+        return null;
 
     }
 }

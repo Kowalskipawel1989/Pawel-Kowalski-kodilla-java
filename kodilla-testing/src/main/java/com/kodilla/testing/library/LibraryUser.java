@@ -28,7 +28,7 @@ public class LibraryUser {
         return "LibraryUser{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", peseId='" + peselId + '\'' +
+                ", peselId='" + peselId + '\'' +
                 '}';
     }
 

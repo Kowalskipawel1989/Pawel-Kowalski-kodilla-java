@@ -132,4 +132,11 @@ public class BoardTestSuite {
         //Then
         Assert.assertEquals(2, longTasks);
     }
+    @Test
+    public void testAddTaskListAverageWorkingOnTask(){
+        //Given
+        Board project = prepareTestData();
+        //When
+
+    }
 }
