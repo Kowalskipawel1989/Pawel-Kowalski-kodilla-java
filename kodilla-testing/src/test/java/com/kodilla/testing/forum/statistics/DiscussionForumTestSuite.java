@@ -14,13 +14,13 @@ public class DiscussionForumTestSuite {
         //Given
         Statistics listOfUserName = mock(Statistics.class);
         List<String> userId = new ArrayList<>();
-        userId.add(0, "User");
-        userId.add(1, "User");
-        userId.add(2, "User");
-        userId.add(3, "User");
-        userId.add(4, "User");
-        userId.add(5, "User");
-        userId.add(6, "User");
+        userId.add(0, "User01");
+        userId.add(1, "User02");
+        userId.add(2, "User03");
+        userId.add(3, "User04");
+        userId.add(4, "User05");
+        userId.add(5, "User06");
+        userId.add(6, "User07");
         when(listOfUserName.usersNames()).thenReturn(userId);
         DiscussionForum discussionForum = new DiscussionForum();
         //When
@@ -43,8 +43,9 @@ public class DiscussionForumTestSuite {
         posts.add("Coś tam coś tam");
         posts.add("Coś tam coś tam");
         when(postsCount.postsCount()).thenReturn(posts.size());
+        DiscussionForum discussionForum = new DiscussionForum();
         //When
-        int numberOfPosts = posts.size();
+        int numberOfPosts = discussionForum.getNumberOfPosts();
         //Then
         Assert.assertEquals(8, numberOfPosts);
     }
@@ -65,10 +66,12 @@ public class DiscussionForumTestSuite {
         comments.add("coś Coś");
         comments.add("coś Coś");
         when(commentsCount.commentsCount()).thenReturn(comments.size());
+        DiscussionForum discussionForum = new DiscussionForum();
         //When
-        int numberOfComments = comments.size();
+        int numberOfComments = discussionForum.getNumberOfComments();
         //Then
         Assert.assertEquals(10, numberOfComments);
+
     }
 
     @Test

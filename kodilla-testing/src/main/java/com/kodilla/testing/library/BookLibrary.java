@@ -19,9 +19,6 @@ public class BookLibrary {
         return bookList;
     }
     public List<Book> listBooksInHandOf(LibraryUser libraryUser){
-        List<Book> rentBookList = new ArrayList<Book>();
-        if (libraryUser.)
-        return null;
-
+        return libraryDatabase.listBooksInHandsOf(libraryUser);
     }
 }

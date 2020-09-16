@@ -1,6 +1,8 @@
 package com.kodilla.testing.forum.statistics;
 
 
+import java.util.List;
+
 public class DiscussionForum{
     int numberOfUsers;
     int numberOfPosts;
@@ -34,7 +36,12 @@ public class DiscussionForum{
     }
 
     public void calculateAdvStatistics(Statistics statistics){
-        statistics.usersNames();
+     this.numberOfUsers = statistics.usersNames().size();
+     this.numberOfPosts = statistics.postsCount();
+     this.numberOfComments = statistics.commentsCount();
+     this.averageNumberOfPostsPerUsers = statistics.postsCount()/statistics.usersNames().size();
+     this.averageNumberOfCommentsPerPost = statistics.commentsCount()/statistics.postsCount();
+     this.averageNumberOfCommentsPerUser = statistics.commentsCount()/statistics.usersNames().size();
     }
    public void showStatistics() {
 
