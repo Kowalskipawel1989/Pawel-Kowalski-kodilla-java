@@ -35,13 +35,14 @@ public class DiscussionForum{
         return averageNumberOfCommentsPerPost;
     }
 
-    public void calculateAdvStatistics(Statistics statistics){
+    public int calculateAdvStatistics(Statistics statistics){
      this.numberOfUsers = statistics.usersNames().size();
      this.numberOfPosts = statistics.postsCount();
      this.numberOfComments = statistics.commentsCount();
      this.averageNumberOfPostsPerUsers = statistics.postsCount()/statistics.usersNames().size();
      this.averageNumberOfCommentsPerPost = statistics.commentsCount()/statistics.postsCount();
      this.averageNumberOfCommentsPerUser = statistics.commentsCount()/statistics.usersNames().size();
+     return 0;
     }
    public void showStatistics() {
 
