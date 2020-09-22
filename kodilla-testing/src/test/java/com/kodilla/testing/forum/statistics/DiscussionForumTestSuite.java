@@ -1,7 +1,7 @@
 package com.kodilla.testing.forum.statistics;
 
 import org.junit.Test;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,69 +10,116 @@ import static org.mockito.Mockito.when;
 
 public class DiscussionForumTestSuite {
     @Test
-    public void testListOfUserName() {
+    public void testNumberOfUserEqualTo0() {
         //Given
         Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
         List<String> userId = new ArrayList<>();
-
         when(statistics.usersNames()).thenReturn(userId);
-        DiscussionForum discussionForum = new DiscussionForum();
         //When
-        int users = discussionForum.calculateAdvStatistics(statistics);
+        int users = discussionForum.getNumberOfUsers();
         //Then
-        Assert.assertEquals(userId, users);
+        assertEquals(0, users);
+    }
+    @Test
+    public void testNumberOfUserEqualTo100() {
+        //Given
+        Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        List<String> userId = new ArrayList<>();
+        userId.get(0);
+        when(statistics.usersNames()).thenReturn(userId);
+        //When
+        int result = discussionForum.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(userId,result);
+
     }
 
+
     @Test
-    public void testPostsCount() {
+    public void testNumberOfPostEqualTo0() {
         //Given
         Statistics statistics = mock(Statistics.class);
         List<String> posts = new ArrayList<String>();
 
         when(statistics.postsCount()).thenReturn(posts.size());
-        DiscussionForum discussionForum = new DiscussionForum();
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
         //When
-        int numberOfPosts = discussionForum.calculateAdvStatistics(statistics);
+        int resultListOf0Posts = discussionForum.getNumberOfPosts();
         //Then
-        Assert.assertEquals(posts.size(), numberOfPosts);
+        assertEquals(0, resultListOf0Posts);
     }
 
     @Test
-    public void testCommentsCount() {
+    public void testNumberOfPostEqualTo1000() {
         //Given
-        Statistics commentsCount = mock(Statistics.class);
-        List<String> comments = new ArrayList<>();
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        comments.add("coś Coś");
-        when(commentsCount.commentsCount()).thenReturn(comments.size());
-        DiscussionForum discussionForum = new DiscussionForum();
+        Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
         //When
-        int numberOfComments = discussionForum.getNumberOfComments();
+
+    }
+
+    @Test
+    public void testNumberOfCommentEqualTo0() {
+        //Given
+        Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        List<String> comments = new ArrayList<>();
+        when(statistics.commentsCount()).thenReturn(comments.size());
+        //When
+        int resultListOf0Comments = discussionForum.getNumberOfComments();
         //Then
-        Assert.assertEquals(10, numberOfComments);
-
+        assertEquals(0, resultListOf0Comments);
     }
 
     @Test
-    public void testAverageNumberOfPostsPerUsers() {
+    public void testNumberOfCommentsIsLessThanThePostList(){
+        Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        List<String> comments = new ArrayList<>();
+        comments.add("comments_1");
+        comments.add("comments_2");
+        comments.add("comments_3");
+
+        List<String> posts = new ArrayList<>();
+        posts.add("post_1");
+        posts.add("post_2");
+        posts.add("post_3");
+        posts.add("post_4");
+        when(statistics.commentsCount()).thenReturn(comments.size());
+        when(statistics.postsCount()).thenReturn(posts.size());
+        //When
+        boolean result = comments.size() < posts.size();
+        //That
+        assertTrue(result);
 
     }
-
     @Test
-    public void testAverageNumberOfCommentsPerUser() {
+    public void testNumberOfCommentsIsGreaterThanThePostList(){
+        Statistics statistics = mock(Statistics.class);
+        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        List<String> comments = new ArrayList<>();
+        comments.add("comments_1");
+        comments.add("comments_2");
+        comments.add("comments_3");
+        comments.add("comments_4");
+        comments.add("comments_5");
+        comments.add("comments_6");
+        comments.add("comments_7");
+        comments.add("comments_8");
 
-    }
+        List<String> posts = new ArrayList<>();
+        posts.add("post_1");
+        posts.add("post_2");
+        posts.add("post_3");
+        posts.add("post_4");
 
-    @Test
-    public void testAverageNumberOfCommentsPerPost(){
-
+        when(statistics.commentsCount()).thenReturn(comments.size());
+        when(statistics.postsCount()).thenReturn(posts.size());
+        //When
+        boolean result = comments.size() > posts.size();
+        //That
+        assertTrue(result);
     }
 }

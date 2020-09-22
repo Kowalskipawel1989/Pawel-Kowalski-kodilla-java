@@ -4,12 +4,17 @@ package com.kodilla.testing.forum.statistics;
 import java.util.List;
 
 public class DiscussionForum{
+    Statistics statistics;
     int numberOfUsers;
     int numberOfPosts;
     int numberOfComments;
-    int averageNumberOfPostsPerUsers;
-    int averageNumberOfCommentsPerUser;
-    int averageNumberOfCommentsPerPost;
+    double averageNumberOfPostsPerUsers;
+    double averageNumberOfCommentsPerUser;
+    double averageNumberOfCommentsPerPost;
+
+    public DiscussionForum(Statistics statistics) {
+        this.statistics = statistics;
+    }
 
     public int getNumberOfUsers() {
         return numberOfUsers;
@@ -23,15 +28,15 @@ public class DiscussionForum{
         return numberOfComments;
     }
 
-    public int getAverageNumberOfPostsPerUsers() {
+    public double getAverageNumberOfPostsPerUsers() {
         return averageNumberOfPostsPerUsers;
     }
 
-    public int getAverageNumberOfCommentsPerUser() {
+    public double getAverageNumberOfCommentsPerUser() {
         return averageNumberOfCommentsPerUser;
     }
 
-    public int getAverageNumberOfCommentsPerPost() {
+    public double getAverageNumberOfCommentsPerPost() {
         return averageNumberOfCommentsPerPost;
     }
 
@@ -39,12 +44,18 @@ public class DiscussionForum{
      this.numberOfUsers = statistics.usersNames().size();
      this.numberOfPosts = statistics.postsCount();
      this.numberOfComments = statistics.commentsCount();
-     this.averageNumberOfPostsPerUsers = statistics.postsCount()/statistics.usersNames().size();
-     this.averageNumberOfCommentsPerPost = statistics.commentsCount()/statistics.postsCount();
-     this.averageNumberOfCommentsPerUser = statistics.commentsCount()/statistics.usersNames().size();
-     return 0;
+     this.averageNumberOfPostsPerUsers = ((double)numberOfPosts / numberOfUsers);
+     this.averageNumberOfCommentsPerPost = ((double)numberOfComments / numberOfPosts);
+     this.averageNumberOfCommentsPerUser = ((double)numberOfComments / numberOfUsers);
+
+     return calculateAdvStatistics(statistics);
     }
    public void showStatistics() {
-
+       System.out.println(getNumberOfUsers());
+       System.out.println(getNumberOfPosts());
+       System.out.println(getNumberOfComments());
+       System.out.println(getAverageNumberOfPostsPerUsers());
+       System.out.println(getAverageNumberOfCommentsPerUser());
+       System.out.println(getAverageNumberOfCommentsPerPost());
    }
 }
