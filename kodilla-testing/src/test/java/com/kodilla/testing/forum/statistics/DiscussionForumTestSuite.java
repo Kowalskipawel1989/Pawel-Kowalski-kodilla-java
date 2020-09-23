@@ -13,10 +13,11 @@ public class DiscussionForumTestSuite {
     public void testNumberOfUserEqualTo0() {
         //Given
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        DiscussionForum discussionForum = new DiscussionForum();
         List<String> userId = new ArrayList<>();
         when(statistics.usersNames()).thenReturn(userId);
         //When
+        discussionForum.calculateAdvStatistics(statistics);
         int users = discussionForum.getNumberOfUsers();
         //Then
         assertEquals(0, users);
@@ -25,101 +26,82 @@ public class DiscussionForumTestSuite {
     public void testNumberOfUserEqualTo100() {
         //Given
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
-        List<String> userId = new ArrayList<>();
-        userId.get(0);
-        when(statistics.usersNames()).thenReturn(userId);
+        DiscussionForum discussionForum = new DiscussionForum();
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i< 100; i++) {
+            list.add("User " + i);
+        }
+        when(statistics.usersNames()).thenReturn(list);
         //When
-        int result = discussionForum.calculateAdvStatistics(statistics);
+        discussionForum.calculateAdvStatistics(statistics);
+        int users = discussionForum.getNumberOfUsers();
         //Then
-        assertEquals(userId,result);
-
+        assertEquals(list.size(),users);
     }
-
-
     @Test
     public void testNumberOfPostEqualTo0() {
         //Given
         Statistics statistics = mock(Statistics.class);
         List<String> posts = new ArrayList<String>();
-
         when(statistics.postsCount()).thenReturn(posts.size());
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        DiscussionForum discussionForum = new DiscussionForum();
         //When
+        discussionForum.calculateAdvStatistics(statistics);
         int resultListOf0Posts = discussionForum.getNumberOfPosts();
         //Then
         assertEquals(0, resultListOf0Posts);
     }
-
     @Test
     public void testNumberOfPostEqualTo1000() {
         //Given
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        DiscussionForum discussionForum = new DiscussionForum();
+        List<String> posts = new ArrayList<>();
+        for(int i = 0; i< 1000; i++) {
+            posts.add("User " + i);
+        }
+        when(statistics.postsCount()).thenReturn(posts.size());
         //When
-
+        discussionForum.calculateAdvStatistics(statistics);
+        int resultListOf1000Posts = discussionForum.getNumberOfPosts();
+        //Then
+        assertEquals(posts.size(),resultListOf1000Posts);
     }
-
     @Test
     public void testNumberOfCommentEqualTo0() {
         //Given
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
+        DiscussionForum discussionForum = new DiscussionForum();
         List<String> comments = new ArrayList<>();
         when(statistics.commentsCount()).thenReturn(comments.size());
         //When
+        discussionForum.calculateAdvStatistics(statistics);
         int resultListOf0Comments = discussionForum.getNumberOfComments();
         //Then
         assertEquals(0, resultListOf0Comments);
     }
-
     @Test
     public void testNumberOfCommentsIsLessThanThePostList(){
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
-        List<String> comments = new ArrayList<>();
-        comments.add("comments_1");
-        comments.add("comments_2");
-        comments.add("comments_3");
-
-        List<String> posts = new ArrayList<>();
-        posts.add("post_1");
-        posts.add("post_2");
-        posts.add("post_3");
-        posts.add("post_4");
-        when(statistics.commentsCount()).thenReturn(comments.size());
-        when(statistics.postsCount()).thenReturn(posts.size());
+        DiscussionForum discussionForum = new DiscussionForum();
+        when(statistics.commentsCount()).thenReturn(500);
+        when(statistics.postsCount()).thenReturn(1000);
         //When
-        boolean result = comments.size() < posts.size();
+        discussionForum.calculateAdvStatistics(statistics);
+        boolean resultCommentsIsLessThanThePost = discussionForum.getNumberOfComments() < discussionForum.getNumberOfPosts();
         //That
-        assertTrue(result);
-
+        assertTrue(resultCommentsIsLessThanThePost);
     }
     @Test
     public void testNumberOfCommentsIsGreaterThanThePostList(){
         Statistics statistics = mock(Statistics.class);
-        DiscussionForum discussionForum = new DiscussionForum(statistics);
-        List<String> comments = new ArrayList<>();
-        comments.add("comments_1");
-        comments.add("comments_2");
-        comments.add("comments_3");
-        comments.add("comments_4");
-        comments.add("comments_5");
-        comments.add("comments_6");
-        comments.add("comments_7");
-        comments.add("comments_8");
-
-        List<String> posts = new ArrayList<>();
-        posts.add("post_1");
-        posts.add("post_2");
-        posts.add("post_3");
-        posts.add("post_4");
-
-        when(statistics.commentsCount()).thenReturn(comments.size());
-        when(statistics.postsCount()).thenReturn(posts.size());
+        DiscussionForum discussionForum = new DiscussionForum();
+        when(statistics.commentsCount()).thenReturn(1000);
+        when(statistics.postsCount()).thenReturn(800);
         //When
-        boolean result = comments.size() > posts.size();
+        discussionForum.calculateAdvStatistics(statistics);
+        boolean resultCommentsIsGreaterThanThePostList = discussionForum.getNumberOfComments() > discussionForum.getNumberOfPosts();
         //That
-        assertTrue(result);
+        assertTrue(resultCommentsIsGreaterThanThePostList);
     }
 }
