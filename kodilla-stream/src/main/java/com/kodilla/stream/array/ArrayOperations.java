@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 public interface ArrayOperations {
     static int getAverage(int[] numbers){
         IntStream.range(0, numbers.length);
-        IntStream.range(0, numbers[20])
-                .average();
-        return numbers.length;
+        IntStream.range(0, numbers.length)
+                 .average();
+        return getAverage(numbers);
     }
 }
