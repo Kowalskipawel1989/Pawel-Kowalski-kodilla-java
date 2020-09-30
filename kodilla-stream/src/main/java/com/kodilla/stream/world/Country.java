@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public final class Country {
     private final String countryName;
-  private final BigDecimal quantity;
+    private final BigDecimal quantity;
 
     public Country(final String countryName,final BigDecimal quantity) {
         this.countryName = countryName;
