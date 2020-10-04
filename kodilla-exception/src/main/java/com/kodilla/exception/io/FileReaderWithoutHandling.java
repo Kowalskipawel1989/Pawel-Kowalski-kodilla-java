@@ -11,6 +11,7 @@ public class FileReaderWithoutHandling {
     public void readFile() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("file/names.txt").getFile());
+
         Stream<String> filesLine = Files.lines(Paths.get(file.getPath()));
         filesLine.forEach(System.out::println);
     }
