@@ -17,10 +17,15 @@ public class FirstChallenge {
 
             FirstChallenge firstChallenge = new FirstChallenge();
 
-            double result = firstChallenge.divide(3, 0);
+            try {
+              double result = firstChallenge.divide(3,0);
+              System.out.println(result);
+            } catch (ArithmeticException e) {
+              System.out.println("division by zero");
+            }
+}
 
-            System.out.println(result);
 
         }
-}
+
 
