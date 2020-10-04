@@ -21,11 +21,11 @@ public class FirstChallenge {
               double result = firstChallenge.divide(3,0);
               System.out.println(result);
             } catch (ArithmeticException e) {
-              System.out.println("division by zero");
+                System.out.println("division by zero");
+            } finally {
+                System.out.println("this is division by zero");
             }
-}
-
-
         }
+}
 
 
