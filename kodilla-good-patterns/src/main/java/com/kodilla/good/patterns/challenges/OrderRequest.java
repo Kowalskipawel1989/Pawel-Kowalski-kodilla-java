@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.challenges;
 
-import javax.jws.soap.SOAPBinding;
 import java.time.LocalDateTime;
 
 public class OrderRequest {
