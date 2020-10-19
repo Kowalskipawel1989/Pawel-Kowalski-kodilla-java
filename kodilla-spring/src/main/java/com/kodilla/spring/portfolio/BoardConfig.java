@@ -2,13 +2,9 @@ package com.kodilla.spring.portfolio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import javax.xml.ws.soap.Addressing;
 
 @Configuration
 public class BoardConfig {
