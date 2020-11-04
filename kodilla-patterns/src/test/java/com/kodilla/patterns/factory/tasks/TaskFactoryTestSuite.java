@@ -38,5 +38,6 @@ public class TaskFactoryTestSuite {
         Assert.assertFalse(drivingTask.isTaskExecuted());
         Assert.assertEquals("Driving car on the street", drivingTask.executeTask());
         Assert.assertEquals("Driving", drivingTask.getTaskName());
+
     }
 }

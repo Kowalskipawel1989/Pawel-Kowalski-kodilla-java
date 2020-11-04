@@ -23,6 +23,11 @@ public class DrivingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
+        if(true){
+            System.out.println("Task done");
+        }else{
+            System.out.println("Task in progress");
+        }
         return false;
     }
 }
