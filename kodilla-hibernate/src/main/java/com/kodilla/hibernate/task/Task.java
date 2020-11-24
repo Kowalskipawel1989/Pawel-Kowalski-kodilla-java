@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "TASKS")
-public class Task {
+public final class Task {
     private int id;
     private String description;
     private Date created;
@@ -20,6 +20,7 @@ public class Task {
         this.created = new Date();
         this.duration = duration;
     }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -27,15 +28,18 @@ public class Task {
     public int getId() {
         return id;
     }
+
     @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
+
     @NotNull
     @Column(name = "CREATED")
     public Date getCreated() {
         return created;
     }
+
     @Column(name = "DURATION")
     public int getDuration() {
         return duration;
