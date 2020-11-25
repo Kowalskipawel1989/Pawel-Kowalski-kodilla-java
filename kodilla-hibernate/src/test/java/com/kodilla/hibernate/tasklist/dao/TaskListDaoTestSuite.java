@@ -18,11 +18,12 @@ import java.util.List;
 public class TaskListDaoTestSuite {
     @Autowired
     private TaskListDao taskListDao;
-    private static final String DESCRIPTION = "Test: First";
+    private static final String DESCRIPTION = "First Task";
+    private static final String LISTNAME = "Pawel";
     @Test
     public void testFindByListName() {
         //Given
-        TaskList taskList = new TaskList("Pawel",DESCRIPTION);
+        TaskList taskList = new TaskList(LISTNAME,DESCRIPTION);
         taskListDao.save(taskList);
         String listName = taskList.getListName();
         //When
@@ -56,6 +57,6 @@ public class TaskListDaoTestSuite {
         Assert.assertNotEquals(0, id);
 
         //CleanUp
-        //taskListDao.deleteById(id);
+        taskListDao.deleteById(id);
     }
 }
