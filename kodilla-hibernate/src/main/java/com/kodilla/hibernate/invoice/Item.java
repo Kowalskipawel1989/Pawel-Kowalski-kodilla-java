@@ -60,7 +60,7 @@ public final class Item {
         this.id = id;
     }
 
-    private void setProduct(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
