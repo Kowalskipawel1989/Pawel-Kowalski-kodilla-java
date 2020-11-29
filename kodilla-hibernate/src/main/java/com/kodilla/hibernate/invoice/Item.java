@@ -29,23 +29,28 @@ public final class Item {
     public int getId() {
         return id;
     }
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
         return product;
     }
+
     @Column(name = "PRICE")
     public BigDecimal getPrice() {
         return price;
     }
+
     @Column(name = "QUANTITY")
     public int getQuantity() {
         return quantity;
     }
+
     @Column(name = "VALUE")
     public BigDecimal getValue() {
         return value;
     }
+
     @ManyToOne
     @JoinColumn(name = "INVOICE_ID")
     public Invoice getInvoice() {
