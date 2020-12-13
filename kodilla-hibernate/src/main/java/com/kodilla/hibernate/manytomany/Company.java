@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 @NamedNativeQuery(
         name = "Company.writeTheNameCompanies",
-        query = "SELECT * FROM COMPANIES" +
-                " WHERE CHAR_LENGTH(),
-        resultClass = Company.class
+        query = "SELECT * FROM COMPANIES like "
+
 )
 @Entity
 @Table(name = "COMPANIES")
