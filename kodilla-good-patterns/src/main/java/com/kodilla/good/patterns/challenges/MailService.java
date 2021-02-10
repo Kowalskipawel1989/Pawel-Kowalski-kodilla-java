@@ -1,10 +1,10 @@
 package com.kodilla.good.patterns.challenges;
 
-import java.time.LocalDateTime;
-
-public class MailService {
-    public void sendMail(final User user, final LocalDateTime from, LocalDateTime shipment){
-        System.out.println("an order from the user: " + user.getName() + user.getSecondName() + user.getNickName()
-                + "Order of the day: " + from.toString() + "shipping the day order: " + shipment.toString());
+public class MailService implements InformationService {
+    public void information(final User user){
+        System.out.println("Name: " + user.getName() + " " + user.getSecondName()
+                            + "\n" + "nick: " + user.getNickName()
+                            + "\n" + "address: " + user.getAddress() + "\n" + "phone number: "
+                            + user.getPhoneNumber());
     }
 }
