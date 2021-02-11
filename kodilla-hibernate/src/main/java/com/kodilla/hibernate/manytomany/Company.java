@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 @NamedNativeQuery(
         name = "Company.writeTheNameCompanies",
-        query = "SELECT * FROM COMPANIES like "
+        query = "SELECT * FROM COMPANIES WHERE name LIKE 'Company'" +
+                "SELECT * FROM COMPANIES WHERE name LIKE '%omp%n%' :searchText"
+
 
 )
 @Entity
