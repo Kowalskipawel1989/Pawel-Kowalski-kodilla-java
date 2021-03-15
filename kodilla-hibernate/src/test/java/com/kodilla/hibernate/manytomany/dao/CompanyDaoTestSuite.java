@@ -60,33 +60,4 @@ public class CompanyDaoTestSuite {
             //do nothing
         }
     }
-
-    @Test
-    public void testWriteTheLastNameEmployees() {
-        //Given
-        Employee employee = new Employee();
-        Employee employee1 = new Employee();
-        Employee employee2 = new Employee();
-        Employee employee3 = new Employee();
-        Employee employee4 = new Employee();
-        Employee employee5 = new Employee();
-
-        //When
-
-        //Then
-
-        //CleanUp
-
-    }
-    @Test
-    public void testWriteTheNameCompanies() {
-        //Given
-
-        //When
-
-        //Then
-
-        //CleanUp
-
-    }
 }
