@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-//@NamedQuery(
-//        name = "Employee.writeTheLastNameEmployees",
- //       query = "FROM EMPLOYEE WHERE lastname"
-//)
+@NamedQuery(
+        name = "Employee.writeTheLastNameEmployees",
+        query = "FROM Employee WHERE lastname LIKE :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
@@ -69,5 +69,25 @@ public class Employee {
 
     private void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstname.equals(employee.firstname)) return false;
+        return lastname.equals(employee.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + firstname.hashCode();
+        result = 31 * result + lastname.hashCode();
+        return result;
     }
 }

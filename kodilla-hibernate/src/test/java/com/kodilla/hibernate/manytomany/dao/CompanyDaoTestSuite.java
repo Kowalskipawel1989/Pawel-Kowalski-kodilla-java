@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany(){
@@ -59,5 +63,28 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
+    }
+    @Test
+    public void searchByLastName(){
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        String lastName = johnSmith.getLastname();
+        String lastName2 = stephanieClarckson.getLastname();
+        String lastName3 = lindaKovalsky.getLastname();
+
+        //When&Then
+        Assert.assertEquals(johnSmith, employeeDao.writeTheLastNameEmployees(lastName).get(0));
+        Assert.assertEquals(stephanieClarckson, employeeDao.writeTheLastNameEmployees(lastName2).get(0));
+        Assert.assertEquals(lindaKovalsky, employeeDao.writeTheLastNameEmployees(lastName3).get(0));
+
+        //CleanUp
+        employeeDao.delete(johnSmith);
+        employeeDao.delete(stephanieClarckson);
+        employeeDao.delete(lindaKovalsky);
     }
 }

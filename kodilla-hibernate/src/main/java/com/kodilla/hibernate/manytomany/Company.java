@@ -5,13 +5,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-//@NamedNativeQuery(
-        //name = "Company.writeTheNameCompanies",
-       // query = "SELECT * FROM COMPANIES WHERE name LIKE 'Company'" +
-        //        "SELECT * FROM COMPANIES WHERE name LIKE '%omp%n%' :searchText"
 
-
-//)
+@NamedNativeQuery(
+        name = "Company.writeTheNameCompanies",
+        query = "SELECT * FROM COMPANIES WHERE Company LIKE :COMPANY_NAME"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
