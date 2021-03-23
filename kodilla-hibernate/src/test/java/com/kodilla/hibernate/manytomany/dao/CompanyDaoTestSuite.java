@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
+
     @Autowired
     CompanyDao companyDao;
+
     @Autowired
     EmployeeDao employeeDao;
 
@@ -59,20 +59,23 @@ public class CompanyDaoTestSuite {
         try {
             companyDao.deleteById(softwareMachineId);
             companyDao.deleteById(dataMaestersId);
-           companyDao.deleteById(greyMatterId);
+            companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
         }
     }
+
     @Test
     public void searchByLastName(){
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
         employeeDao.save(johnSmith);
         employeeDao.save(stephanieClarckson);
         employeeDao.save(lindaKovalsky);
+
         String lastName = johnSmith.getLastname();
         String lastName2 = stephanieClarckson.getLastname();
         String lastName3 = lindaKovalsky.getLastname();
@@ -86,5 +89,31 @@ public class CompanyDaoTestSuite {
         employeeDao.delete(johnSmith);
         employeeDao.delete(stephanieClarckson);
         employeeDao.delete(lindaKovalsky);
+    }
+
+    @Test
+    public void writeTheThreeLetters() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+
+        String threeLetters = softwareMachine.getName();
+        String threeLetters2 = dataMaesters.getName();
+        String threeLetters3 = greyMatter.getName();
+
+        //When&Then
+        Assert.assertEquals(softwareMachine.getId(), companyDao.writeTheNameCompanies(threeLetters).get(0).getId());
+        Assert.assertEquals(dataMaesters.getId(), companyDao.writeTheNameCompanies(threeLetters2).get(0).getId());
+        Assert.assertEquals(greyMatter.getId(), companyDao.writeTheNameCompanies(threeLetters3).get(0).getId());
+
+        //CleanUp
+        companyDao.delete(softwareMachine);
+        companyDao.delete(dataMaesters);
+        companyDao.delete(greyMatter);
     }
 }
