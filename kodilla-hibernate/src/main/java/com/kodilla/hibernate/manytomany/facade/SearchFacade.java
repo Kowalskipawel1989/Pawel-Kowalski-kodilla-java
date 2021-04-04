@@ -21,13 +21,34 @@ public class SearchFacade {
 
     public void processSearchCompany(String threeLetters) throws SearchProcessingException{
         boolean wasError = false;
+        LOGGER.info("Start Search Companies");
+        if (threeLetters.length() > 2) {
+            LOGGER.error(SearchProcessingException.ERR_THREE_CHARACTERS);
+            wasError = true;
+            throw new SearchProcessingException(SearchProcessingException.ERR_THREE_CHARACTERS);
+        }
+        if (threeLetters.isEmpty()){
+            LOGGER.error(SearchProcessingException.ERR_NOT_FOUND);
+            wasError = true;
+            throw new SearchProcessingException(SearchProcessingException.ERR_NOT_FOUND);
+        }
         List<Company> companySearch = companyDao.writeTheNameCompanies(threeLetters);
-
     }
 
-    public void processSearchEmployee(String lastName) throws SearchProcessingException {
+    public void processSearchEmployee(String firstName) throws SearchProcessingException {
         boolean wasError = false;
-        List<Employee> employeeSearch = employeeDao.writeTheLastNameEmployees(lastName);
+        List<Employee> employeeSearch = employeeDao.writeThreeLettersEmployees("%" + firstName + "%");
+        LOGGER.info("Start search Employees" + employeeSearch);
 
+        if (firstName.length() > 2) {
+            LOGGER.error(SearchProcessingException.ERR_THREE_CHARACTERS);
+            wasError = true;
+            throw new SearchProcessingException(SearchProcessingException.ERR_THREE_CHARACTERS);
+        }
+        if (employeeSearch.isEmpty()) {
+            LOGGER.error(SearchProcessingException.ERR_NOT_FOUND);
+            wasError = true;
+            throw new SearchProcessingException(SearchProcessingException.ERR_NOT_FOUND);
+        }
     }
 }
