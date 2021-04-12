@@ -1,22 +1,17 @@
+
 plugins {
     id 'java'
 }
 
-group = 'com.kodilla'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+version '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile ('org.springframework.boot:spring-boot-starter')
+   // implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'junit:junit:4.12'
-    compile('org.springframework.boot:spring-boot-starter-aop')
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-test {
-    useJUnitPlatform()
+   // testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   // compile('org.springframework.boot:spring-boot-starter-aop')
 }
