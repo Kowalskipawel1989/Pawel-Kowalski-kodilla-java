@@ -19,36 +19,37 @@ public class SearchFacade {
     private EmployeeDao employeeDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchFacade.class);
 
-    public void processSearchCompany(String threeLetters) throws SearchProcessingException{
-        boolean wasError = false;
-        LOGGER.info("Start Search Companies");
-        if (threeLetters.length() > 2) {
+    public List<Company> companySearch(String threeLetters) throws SearchProcessingException{
+        List<Company> result = null;
+
+        if (threeLetters.length() < 2) {
             LOGGER.error(SearchProcessingException.ERR_THREE_CHARACTERS);
-            wasError = true;
             throw new SearchProcessingException(SearchProcessingException.ERR_THREE_CHARACTERS);
+        } else {
+            LOGGER.info("Find company with: " + threeLetters);
+            try{
+                result = companyDao.writeTheNameCompanies("%" + threeLetters + "%");
+            } catch (RuntimeException e) {
+                LOGGER.error(SearchProcessingException.ERR_NOT_FOUND, e);
+            }
         }
-        if (threeLetters.isEmpty()){
-            LOGGER.error(SearchProcessingException.ERR_NOT_FOUND);
-            wasError = true;
-            throw new SearchProcessingException(SearchProcessingException.ERR_NOT_FOUND);
-        }
-        List<Company> companySearch = companyDao.writeTheNameCompanies(threeLetters);
+        return result;
     }
 
-    public void processSearchEmployee(String firstName) throws SearchProcessingException {
-        boolean wasError = false;
-        List<Employee> employeeSearch = employeeDao.writeThreeLettersEmployees("%" + firstName + "%");
-        LOGGER.info("Start search Employees" + employeeSearch);
+    public List<Employee> employeeSearch(String firstName) throws SearchProcessingException {
+        List<Employee> result = null;
 
-        if (firstName.length() > 2) {
+        if (firstName.length() < 2) {
             LOGGER.error(SearchProcessingException.ERR_THREE_CHARACTERS);
-            wasError = true;
             throw new SearchProcessingException(SearchProcessingException.ERR_THREE_CHARACTERS);
+        } else {
+            LOGGER.info("Find employee with: " + firstName);
+            try{
+                result = employeeDao.writeThreeLettersEmployees("%" + firstName + "%");
+            } catch (RuntimeException e) {
+                LOGGER.error(SearchProcessingException.ERR_NOT_FOUND, e);
+            }
         }
-        if (employeeSearch.isEmpty()) {
-            LOGGER.error(SearchProcessingException.ERR_NOT_FOUND);
-            wasError = true;
-            throw new SearchProcessingException(SearchProcessingException.ERR_NOT_FOUND);
-        }
+        return result;
     }
 }
